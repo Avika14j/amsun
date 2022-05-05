@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>AMSUN</title>
+
+    <link type="image/x-icon" href="{% static 'assets-home/img/favicon.png' %}" rel="icon">
+
+    <link rel="stylesheet" href="{% static 'assets-home/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets-home/plugins/fontawesome/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets-home/plugins/fontawesome/css/all.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets-home/css/feather.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets-home/css/owl.carousel.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets-home/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets-home/css/style.css' %}">
+
+
+
+
+
+</head>
+
+<body class="home-five">
+
+    <div class="main-wrapper">
+
+        <header class="header">
+            <div class="container">
+                <div class="nav-bg-five">
+                    <nav class="navbar navbar-expand-lg header-nav nav-transparent">
+                        <div class="navbar-header">
+                            <a id="mobile_btn" href="javascript:void(0);"> <span class="bar-icon">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                  
+                                </span>
+                            </a>
+                            <a href="{% url 'home' %}" class="navbar-brand logo">
+                                <img src="{% static 'assets-home/img/logo.png' %}" class="img-fluid" alt="Logo">
+                            </a>
+
+                        </div>
+                        <div class="main-menu-wrapper">
+                            <div class="menu-header">
+                                <a href="{% url 'home' %}" class="menu-logo">
+                                    <img src="{% static 'assets-home/img/logo.png' %}" class="img-fluid" alt="Logo">
+                                </a>
+                                <a id="menu_close" class="menu-close" href="javascript:void(0);"> <i
+                                        class="fas fa-times"></i>
+                                </a>
+                                
+                            </div>
+                            <ul class="main-nav black-font">
+                                <li class="has-submenu active"> <a href="{% url 'home' %}">Home </a>
+                            
+                                      
+                                </li>
+                                <li class="has-submenu"><a href="">Doctors <i class="fas fa-chevron-down"></i></a>
+                                    <ul class="submenu">
+                                        <li><a href="{% url 'login' %}">Appointments</a></li>
+                                        <li><a href="{% url 'login' %}">Schedule Timing</a></li>
+                                        <li><a href="{% url 'login' %}">Patients List</a></li>
+                                        <li><a href="{% url 'login' %}">Patients Profile</a></li>
+                                        <li><a href="{% url 'login' %}">Invoices</a></li></ul>
+                                </li>
+                                <li class="has-submenu"><a href="">Patients <i class="fas fa-chevron-down"></i></a>
+                                    <ul class="submenu">
+                                        <li><a href="{% url 'login' %}">Search Doctor</a></li>
+                                        <li><a href="{% url 'login' %}">Doctor Profile</a></li>
+                                        <li><a href="{% url 'login' %}">Booking</a></li>
+                                        <li><a href="{% url 'login' %}">Checkout</a></li>
+                                    </ul>
+                                </li>
+                              
+                                {% if not request.user.is_authenticated %}
+                                <li class="login-link">
+                                    <a href="{% url 'login' %}">Login / Signup</a>
+                                </li>
+                                {% else %}
+                                <li class="login-link">
+                                    <a href="{% url 'logout' %}">Logout</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <ul class="nav header-navbar-rht">
+                            <li class="nav-item contact-item">
+                                <div class="header-contact-img">
+                                    <i class="feather-phone"></i>
+                                </div>
+                                <div class="header-contact-detail">
+                                    <p class="contact-info-header"></p>
+                                </div>
+                            </li>
+                            {% if not request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link btn-five" href="{% url 'login' %}">Sign In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn-five-light" href="{% url 'register' %}">Sign Up</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        {% block body %}
+        {% endblock %}
+        <footer class="footer footer-five">
+
+            <div class="footer-top aos" data-aos="fade-up">
+                <div class="container">
+                    <div class="row">
+                        <!-- <div class="col-lg-3 col-md-6">
+
+                            <div class="footer-widget footer-about">
+                                <div class="footer-logo">
+                                    <img src="{% static 'assets-home/img/footer-logo.png' %}" alt="logo">
+                                </div>
+                                <div class="footer-about-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                                <div class="footer-widget footer-menu footer-menu-five">
+                                    <ul>
+                                        <li><a href="#" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+                                        </li>
+                                        <li><a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                                        </li>
+                                        <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i> Linkedin</a>
+                                        </li>
+                                        <li><a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-6">
+
+                            <div class="footer-widget footer-menu">
+                                <h2 class="footer-title">For Patients</h2>
+                                <ul>
+                                    <li><a href="search.html">Search for Doctors</a>
+                                    </li>
+                                    <li><a href="login.html">Login</a>
+                                    </li>
+                                    <li><a href="register.html">Register</a>
+                                    </li>
+                                    <li><a href="booking.html">Booking</a>
+                                    </li>
+                                    <li><a href="patient-dashboard.html">Patient Dashboard</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+
+                            <div class="footer-widget footer-menu">
+                                <h2 class="footer-title">For Doctors</h2>
+                                <ul>
+                                    <li><a href="appointments.html">Appointments</a>
+                                    </li>
+                                    <li><a href="chat.html">Chat</a>
+                                    </li>
+                                    <li><a href="login.html">Login</a>
+                                    </li>
+                                    <li><a href="doctor-register.html">Register</a>
+                                    </li>
+                                    <li><a href="doctor-dashboard.html">Doctor Dashboard</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+
+                            <div class="footer-widget footer-contact">
+                                <h2 class="footer-title">Contact Us</h2>
+                                <div class="footer-contact-info">
+                                    <div class="footer-address"><span><i class="feather-map-pin"></i></span>
+                                        <p>3556 Beech Street, San Francisco,
+                                            <br>California, CA <br>94108
+                                        </p>
+                                    </div>
+                                    <p><i class="feather-phone"></i> +1 315 369 5943</p>
+                                    <p class="mb-0"><i class="feather-mail"></i>
+                                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                            data-cfemail="55313a363620273015302d34382539307b363a38">[email&#160;protected]</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div> -->
+                   
+
+                        <div class="col-lg-3 col-md-6">
+
+                        
+
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-menu">
+                                <h2 class="footer-title">For Patients</h2>
+                                <ul>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Search for Doctors</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Login</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Register</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Booking</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Patient Dashboard</a></li>
+                                </ul>
+                            </div>
+                            <!-- /Footer Widget -->
+
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-menu">
+                                <h2 class="footer-title">For Doctors</h2>
+                                <ul>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Chat</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Login</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Register</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
+                                </ul>
+                            </div>
+                            <!-- /Footer Widget -->
+                         </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-menu">
+                                <h2 class="footer-title">For Hosptial</h2>
+                                <ul>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Chat</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Login</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Register</a></li>
+                                    <li><a href="{% url 'login' %}"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
+                                </ul>
+                            </div>
+                            <!-- /Footer Widget -->
+
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-contact">
+                                <h2 class="footer-title">Contact Us</h2>
+                                <div class="footer-contact-info">
+                                    <div class="footer-address">
+                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                        <p> NEAR  BIADA, Barari, Bihar 812003. </p>
+                                    </div>
+                                    <p>
+                                        <i class="fas fa-phone-alt"></i>
+                                        +91  6204686702
+                                    </p>
+                                    <p class="mb-0">
+                                        <i class="fas fa-envelope"></i>
+                                        kumaraman12958@gmail.com
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- /Footer Widget -->
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="footer-bottom">
+                <div class="container">
+
+                    <div class="copyright">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="copyright-text">
+                                    <p class="mb-0">&copy; 2022 AMSUN. All rights reserved.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+
+                                <div class="copyright-menu">
+                                    <ul class="policy-menu">
+                                        <li><a href="term-condition.html">Terms and Conditions</a>
+                                        </li>
+                                        <li><a href="privacy-policy.html">Policy</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+    <script src="{% static 'assets-home/js/jquery-3.6.0.min.js' %}"></script>
+
+    <script src="{% static 'assets-home/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'assets-home/js/owl.carousel.min.js' %}"></script>
+
+    <script src="{% static 'assets-home/js/slick.js' %}"></script>
+
+    <script src="{% static 'assets-home/js/feather.min.js' %}"></script>
+
+    <script src="{% static 'assets-home/js/aos.js' %}"></script>
+
+    <script src="{% static 'assets-home/js/script.js' %}"></script>
+
+
+
+
+
+
+
+</body>

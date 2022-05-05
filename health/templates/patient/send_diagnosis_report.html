@@ -1,0 +1,105 @@
+{% extends 'patient/sidebar.html' %}
+{% load widget_tweaks %}
+{% block b %}
+{% load static %}
+
+<h2 style="font-family:roman;color:green" align="center" class="card">Need Help Form</h2>
+
+<div class="card">
+     {% for i in messages %}
+<p style="color:red">{{i}}</p>
+{% endfor %}
+
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-12 col-lg-6">
+
+											<!-- Change Password Form -->
+											<form action="" method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <label>Choose any one</label><br>
+                                                <div class="form-group">
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" name="hospital_doctor" id="inlineRadio1" value="Hospital" class="form-check-input"  onclick="checkhospitaldoctor('Hospital')">
+                                                        <label class="form-check-label" for="inlineRadio1">Hospital</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" name="hospital_doctor" id="inlineRadio2" value="Doctor" class="form-check-input"  onclick="checkhospitaldoctor('Doctor')">
+                                                        <label class="form-check-label" for="inlineRadio2">Doctor</label> 
+                                                    </div>
+                                                </div>
+
+												<div class="form-group" id="hospital">
+													<label>Hospital Name</label>
+													<select name="hospital" class="form-control">
+                                                        <option value="">---Select a Hospital---</option>
+                                                        {% for i in hospital %}
+                                                            <option value="{{i.id}}">{{i.name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+												</div>
+
+                                                <div class="form-group" id="doctor">
+													<label>Doctor Name</label>
+													<select name="doctor" class="form-control">
+                                                        <option value="">---Select a Doctor---</option>
+                                                        {% for i in doctor %}
+                                                            <option value="{{i.id}}">{{i.name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+												</div>
+
+												<div class="form-group">
+													<label>Diagnosis Lab Name</label>
+													<select name="diagnosis" class="form-control">
+                                                        <option value="">---Select a Lab name---</option>
+                                                        {% for i in lab %}
+                                                            <option value="{{i.id}}">{{i.name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+												</div>
+
+												<div class="form-group">
+													<label>Test Type</label>
+													<input type="text" name="test_type" class="form-control">
+												</div>
+
+												<div class="form-group">
+													<label>Upload Report</label>
+													<input type="file" name="file" class="form-control">
+												</div>
+
+												<div class="form-group">
+													<label>Price</label>
+													<input type="text" name="price" class="form-control">
+												</div>
+
+												<div class="form-group">
+													<label>Write Your Query</label>
+													<textarea name="description" class="form-control"></textarea>
+												</div>
+												<div class="submit-section">
+													<button type="submit" class="btn btn-primary submit-btn">Send Request</button>
+												</div>
+											</form>
+											<!-- /Change Password Form -->
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+			<!-- /Page Content -->
+			<script>
+				function checkhospitaldoctor(data){
+					if(data == "Hospital"){
+						document.getElementById('hospital').style.display = "block";
+						document.getElementById('doctor').style.display = "none";
+					}else{
+						document.getElementById('doctor').style.display = "block";
+						document.getElementById('hospital').style.display = "none";
+					}
+				}
+			</script>
+
+{% endblock %}

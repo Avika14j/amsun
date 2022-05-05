@@ -1,0 +1,286 @@
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMSUN Card</title>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+
+
+
+    /* body {
+        background: #1488cc;
+        /* fallback for old browsers */
+        /* background: linear-gradient(to left, #ff1060a4, #ffac06d0);
+        height: 100vh;
+        font-family: "Josefin Sans", sans-serif; */
+    /* } */
+
+    /* Background circles start */
+    .circle {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(#fF105F, #ffad06);
+    }
+
+    .circles {
+        position: absolute;
+        height: 270px;
+        width: 450px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .circle-1 {
+        height: 180px;
+        width: 180px;
+        top: -50px;
+        left: -60px;
+    }
+
+    .circle-2 {
+        height: 200px;
+        width: 200px;
+        bottom: -90px;
+        right: -90px;
+        opacity: 0.8;
+    }
+
+    /* Background circles end */
+
+
+
+
+    .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+        font-weight: 100;
+        color: white;
+    }
+
+    .card {
+        width: 400px;
+        height: 200px;
+        position: relative;
+        /* background: linear-gradient(to top right, rgb(255, 115, 0), rgb(255, 97, 6)); */
+        background: linear-gradient(to right, #fF105F, #ffad06);
+        box-shadow: 1px 20px 50px grey;
+        border-radius: 5px;
+        padding: 1em;
+        z-index: 2;
+    }
+
+    .card .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 32px;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    h3 {
+        position: absolute;
+        bottom: 35px;
+        left: 30px;
+        font-size: 90px;
+        text-transform: uppercase;
+        /* color: rgb(120, 101, 101); */
+        /* color:  rgb(255, 21, 91); */
+
+        opacity: 0.3;
+        z-index: -4;
+    }
+
+    .card .mid {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .card .mid .card-number span {
+        /* border: 1px solid grey; */
+        padding: 3px 5px;
+        display: inline-block;
+        font-size: 14px;
+        letter-spacing: 1px;
+        border-radius: 2px;
+    }
+
+    .card-number span+span {
+        margin: 8px 15px;
+    }
+
+    .card .bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .card .bottom span {
+        display: inline-block;
+        /* border: 1px solid grey; */
+        padding: 2px 4px;
+        border-radius: 2px;
+        font-size: 14px;
+        margin-top: 5px;
+        text-transform: uppercase;
+    }
+
+    .card .bottom .card-holder span {
+        width: 150px;
+        height: 22px;
+    }
+
+    .bottom span+span {
+        margin-left: 5px;
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        .print-container,
+        .print-container * {
+            visibility: visible;
+        }
+
+        .print-container {
+            left: 0px;
+            position: absolute;
+            top: 0px;
+            margin-top: 40%;
+        }
+    }
+</style>
+
+<body>
+    <a href="{% url 'patient_dashboard' %}"><i class="fa fa-arrow-circle-left" style="font-size:48px;color:red"></i>
+        <span style="font-size:48px;color:red"">Back</span></a>
+
+        <div class=" circles">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            </div>
+
+            <div class=" container">
+
+                <div class="card print-container">
+                    <center>
+                        <h3> <i><img src="static/user/img/leaf.png" style="margin-left:70%;"></i></h3>
+                    </center>
+                    <div class="top">
+                        <h1><i><img src="static/assets-home/img/card-logo.png"></i></h1>
+                        <h2>Health Card</h2>
+                    </div>
+
+
+
+
+                    <div class="mid">
+                        <h2>card number</h2>
+                        <div class="card-number">
+                            <span>{{first}}</span>
+                            <span>{{second}}</span>
+                            <span>{{third}}</span>
+                            <span>{{fourth}}</span>
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <div class="card-holder">
+                            <h2>card holder</h2>
+                            <span>{{data.user.first_name}} {{data.user.last_name}}</span>
+                        </div>
+                        <div class="express">
+                            <h2>expire</h2>
+                            <span>{{data.ex_month}}</span> /
+                            <span>{{data.ex_year}}</span>
+                        </div>
+                        <div class="cvv">
+                            <h2>cvv</h2>
+                            <span>{{data.cvv.0}}</span>
+                            <span>{{data.cvv.1}}</span>
+                            <span>{{data.cvv.2}}</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- <div class="card print-container" style="margin: 3%; ">
+                    <h3><i>health</i></h3>
+                    <div class="top">
+                        <h1><i>health</i></h1>
+                        <h2>Health Card</h2>
+                    </div>
+
+                    <div class="mid">
+                        <h2>card number</h2>
+                        <div class="card-number">
+                            <span>{{first}}</span>
+                            <span>{{second}}</span>
+                            <span>{{third}}</span>
+                            <span>{{fourth}}</span>
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <div class="card-holder">
+                            <h2>card holder</h2>
+                            <span>{{data.user.first_name}} {{data.user.last_name}}</span>
+                        </div>
+                        <div class="express">
+                            <h2>expire</h2>
+                            <span>{{data.ex_month}}</span> /
+                            <span>{{data.ex_year}}</span>
+                        </div>
+                        <div class="cvv">
+                            <h2>cvv</h2>
+                            <span>{{data.cvv.0}}</span>
+                            <span>{{data.cvv.1}}</span>
+                            <span>{{data.cvv.2}}</span>
+                        </div>
+                    </div>
+
+                </div> -->
+
+            </div>
+
+
+            </div>
+
+           <center>
+            <button onclick="window.print();" style=" width: 10%; height: 10%; color: #fff; background: linear-gradient(to right, #fF105F, #ffad06);" >print</button>
+           </center>
+
+</body>
+
+</html>
+

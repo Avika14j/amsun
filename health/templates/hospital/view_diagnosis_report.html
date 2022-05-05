@@ -1,0 +1,85 @@
+{% extends 'hospital/sidebar.html' %}
+{% block b %}
+{% load static %}
+
+<h2 style="font-family:roman; color:#fff; background:#3fa1a9 ; background-image: url({% static 'user/img/about.png' %});" align="center" class="card">All Report</h2>
+							<div class="card">
+									{% for i in messages %}
+					<p style="color:red">{{i}}</p>
+{% endfor %}
+								<div class="card-body pt-0">
+
+									<!-- Tab Menu -->
+									<!-- /Tab Menu -->
+
+									<!-- Tab Content -->
+									<div class="tab-content pt-0" style="box-shadow: 25px 20px 25px 0px  #3fa1a9; border-radius: 20px;">
+
+										<!-- Appointment Tab -->
+										<div id="pat_appointments" class="tab-pane fade show active">
+											<div class="card card-table mb-0">
+												<div class="card-body">
+													<div class="table-responsive">
+														<table class="table table-hover table-center mb-0">
+															<thead>
+																<tr>
+																	<th>Doctor</th>
+																	<th>Hospital</th>
+																	<th>Patient</th>
+																	<th>Create Date</th>
+																	<th>Report</th>
+																	<th>Test</th>
+																	<th>Amount</th>
+																	<th>Status</th>
+																	
+																</tr>
+															</thead>
+															<tbody>
+															{% for i in report %}
+																<tr>
+																	<td>
+																		<a href="javascript:void(0)">{% if i.doctor.user.first_name %}Dr. {{i.doctor.user.first_name}} {{i.doctor.user.last_name}}<span>{{i.doctor.specialist}}</span>{% endif %}</a>
+																	</td>
+
+                                                                    <td>
+																		{{i.hospital.name}}
+																	</td>
+
+                                                                    <td>
+																		{{i.patient.user.first_name}} {{i.patient.user.last_name}}
+																	</td>
+																	<td>{{i.created}} </td>
+																	<td><a href="{{i.file.url}}" download>View Report</a></td>
+																	<td>{{i.test_type}}</td>
+																	<td>₹{{i.price}}</td>
+																	{% if i.status == "pending" %}
+																	<td><span class="badge badge-pill bg-danger-light">{{i.status}}</span></td>
+																	{% else %}
+																	{% if i.status == "confirmed" %}
+																	<td><span class="badge badge-pill bg-success-light">{{i.status}}</span></td>
+																	{% endif %}
+																	{% endif %}
+																	
+																</tr>
+																{% endfor %}
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- /Appointment Tab -->
+
+
+										<!-- /Billing Tab -->
+
+									</div>
+									<!-- Tab Content -->
+
+								</div>
+							</div>
+
+			<!-- /Page Content -->
+
+{% endblock %}
+

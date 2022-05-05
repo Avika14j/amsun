@@ -1,0 +1,50 @@
+{% extends 'patient/sidebar.html' %}
+{% load widget_tweaks %}
+{% block b %}
+{% load static %}
+
+<h2 style="font-family:roman; color:#fff; background:#3fa1a9 ; background-image: url({% static 'user/img/about.png' %});" align="center" class="card">Need Help Form</h2>
+
+<div class="card" style="box-shadow: 25px 20px 25px 0px  #3fa1a9; border-radius: 20px;">
+	{% for i in messages %}
+	<p style="color:red">{{i}}</p>
+	{% endfor %}
+
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-12 col-lg-6">
+
+				<!-- Change Password Form -->
+				<form action="" method="post">
+					{% csrf_token %}
+					<div class="form-group">
+						<label>Hospital Name</label>
+						<select name="hospital" class="form-control">
+							<option value="">---Select a Hospital---</option>
+							{% for i in hospital %}
+							<option value="{{i.id}}">{{i.name}}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Bed Number</label>
+						<input type="text" name="bed_number" class="form-control" placeholder="Enter Your Bed Number">
+					</div>
+					<div class="form-group">
+						<label>Write Your Query</label>
+						<textarea name="description" class="form-control"></textarea>
+					</div>
+					<div class="submit-section">
+						<button type="submit" class="btn btn-primary submit-btn">Send Request</button>
+					</div>
+				</form>
+				<!-- /Change Password Form -->
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- /Page Content -->
+
+{% endblock %}
